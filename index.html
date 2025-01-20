@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Exchange System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .book-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .book-item {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .book-item button {
+            padding: 8px 12px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .reserved {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .available {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Book Exchange System</h1>
+
+        <div>
+            <h3>Book Catalog</h3>
+            <ul class="book-list" id="book-list">
+                <!-- Book list will be populated here dynamically -->
+            </ul>
+        </div>
+
+        <div>
+            <h3>Reserve or Release a Book</h3>
+            <form id="reserve-form">
+                <label for="book-title">Book Title: </label>
+                <input type="text" id="book-title" required />
+                <label for="user-name">Name: </label>
+                <input type="text" id="user-name" required />
+                <button type="submit">Reserve/Release</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simulated list of books and users for the example
+        const books = [
+            { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', status: 'available', reservedBy: '' },
+            { title: '1984', author: 'George Orwell', status: 'available', reservedBy: '' },
+            { title: 'Moby Dick', author: 'Herman Melville', status: 'available', reservedBy: '' },
+            { title: 'Pride and Prejudice', author: 'Jane Austen', status: 'available', reservedBy: '' },
+            { title: 'Moby Dick', author: 'Herman Melville', status: 'available', reservedBy: '' },
+        ];
+
+        // Display the books on the page
+        function displayBooks() {
+            const bookList = document.getElementById('book-list');
+            bookList.innerHTML = '';
+            books.forEach(book => {
+                const bookItem = document.createElement('li');
+                bookItem.classList.add('book-item');
+                bookItem.innerHTML = `
+                <span>${book.title} by ${book.author}</span>
+                <span class="${book.status === 'reserved' ? 'reserved' : 'available'}">${book.status}</span>
+                <button onclick="reserveBook('${book.title}')">${book.status === 'available' ? 'Reserve' : 'Release'}</button>
+            `;
+                bookList.appendChild(bookItem);
+            });
+        }
+
+        // Function to handle book reservation or release
+        function reserveBook(title) {
+            const book = books.find(book => book.title === title);
+            const userName = prompt('Enter your name:');
+
+            if (book.status === 'available') {
+                book.status = 'reserved';
+                book.reservedBy = userName;
+            } else if (book.status === 'reserved' && book.reservedBy === userName) {
+                book.status = 'available';
+                book.reservedBy = '';
+            } else {
+                alert(`The book is reserved by ${book.reservedBy}`);
+                return;
+            }
+
+            displayBooks();
+        }
+
+        // Form submission to reserve or release a book
+        document.getElementById('reserve-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const title = document.getElementById('book-title').value;
+            const userName = document.getElementById('user-name').value;
+
+            const book = books.find(book => book.title.toLowerCase() === title.toLowerCase());
+
+            if (book) {
+                if (book.status === 'available') {
+                    book.status = 'reserved';
+                    book.reservedBy = userName;
+                } else if (book.status === 'reserved' && book.reservedBy === userName) {
+                    book.status = 'available';
+                    book.reservedBy = '';
+                } else {
+                    alert(`The book is reserved by ${book.reservedBy}`);
+                    return;
+                }
+                displayBooks();
+            } else {
+                alert('Book not found!');
+            }
+
+            // Clear the form
+            document.getElementById('book-title').value = '';
+            document.getElementById('user-name').value = '';
+        });
+
+        // Initial display of books
+        displayBooks();
+    </script>
+
+</body>
+
+</html>
