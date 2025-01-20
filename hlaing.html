@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Book Exchange System</title>
+</head>
+
+<body>
+
+    <h2><u>Library Application</u></h2>
+
+    <table style="font-size: 20px;" bgcolor="black" width="800" height="200" id="editable-table">
+        <tr bgcolor="white">
+            <th width="600">Title of Book</th>
+            <th width="150">Author</th>
+            <th width="150">Owner</th>
+            <th width="150">User</th>
+            <th width="150">Status</th>
+
+        </tr>
+        <tr bgcolor="White" align="center">
+            <td>1984</td>
+            <td>George Orwell</td>
+            <td>Wai Phyo</td>
+            <td>Aung</td>
+            <td>Available</td>
+
+        </tr>
+        <tr bgcolor="White" align="center">
+            <td>To Kill a Mockingbird</td>
+            <td>Harper Lee</td>
+            <td>Kaung</td>
+            <td>Ko</td>
+            <td>Reserved</td>
+
+        </tr>
+        <tr bgcolor="White" align="center">
+            <td>The Great Gatsby</td>
+            <td>F. Scott Fitzgerald</td>
+            <td>Zaw</td>
+            <td>Myo</td>
+            <td>Available</td>
+
+        </tr>
+        <tr bgcolor="White" align="center">
+            <td>Pride and Prejudice</td>
+            <td>Jane Austen</td>
+            <td>Khant</td>
+            <td>Min</td>
+            <td>Available</td>
+        </tr>
+        <tr bgcolor="White" align="center">
+            <td>Moby Dick</td>
+            <td>Herman Melville</td>
+            <td>Paing</td>
+            <td>Thwin</td>
+            <td>Available</td>
+
+        </tr>
+
+    </table>
+    <br>
+
+    <h2><u>Search Box</u></h2>
+
+    <script>
+        function updateOutput() {
+            // Get the value from the input box
+            var inputText = document.getElementById("inputBox").value;
+
+            // Check for specific input values and set the output accordingly
+            if (inputText === "1984") {
+                document.getElementById("utputBox").value = "Available";
+            } else if (inputText === "To Kill a Mockingbird") {
+                document.getElementById("utputBox").value = "Reserved";
+            } else if (inputText === "The Great Gatsbyr") {
+                document.getElementById("utputBox").value = "Available";
+            } else if (inputText === "Pride and Prejudice") {
+                document.getElementById("utputBox").value = "Available";
+            } else if (inputText === "Moby Dick") {
+                document.getElementById("utputBox").value = "Available";
+            } else {
+                document.getElementById("utputBox").value = "";  // Clear output if no match
+            }
+        }
+
+        function resetFields() {
+            // Reset both the input and output fields to empty
+            document.getElementById("inputBox").value = "";
+            document.getElementById("utputBox").value = "";
+        }
+    </script>
+    <label for="inputBox">Title Of Book:</label><br>
+    <input type="text" id="inputBox" oninput="updateOutput()"><br><br>
+
+    <label for="utputBox">Status:</label><br>
+    <input type="text" id="utputBox" readonly>
+    <style>
+        #utputBox {
+            text-align: start;
+            width: 100px;
+        }
+    </style>
+
+    <br><br>
+
+    <!-- Reset button to clear the input and output -->
+    <button onclick="resetFields()">Clear</button>
+
+    <br>
+
+    <h2><u>Search Box</u></h2>
+
+    <script>
+        function pdateOutput() {
+            // Get the value from the input box
+            var inputText = document.getElementById("nputBox").value;
+
+            // Check for specific input values and set the output accordingly
+            if (inputText === "1984") {
+                document.getElementById("tputBox").value = "Aung";
+            } else if (inputText === "To Kill a Mockingbird") {
+                document.getElementById("tputBox").value = "Ko";
+            } else if (inputText === "The Great Gatsbyr") {
+                document.getElementById("tputBox").value = "Myo";
+            } else if (inputText === "Pride and Prejudice") {
+                document.getElementById("tputBox").value = "Min";
+            } else if (inputText === "Moby Dick") {
+                document.getElementById("tputBox").value = "Thwin";
+            } else {
+                document.getElementById("tputBox").value = "";  // Clear output if no match
+            }
+        }
+
+        function esetFields() {
+            // Reset both the input and output fields to empty
+            document.getElementById("nputBox").value = "";
+            document.getElementById("tputBox").value = "";
+        }
+    </script>
+    <label for="nputBox">Title Of Book:</label><br>
+    <input type="text" id="nputBox" oninput="pdateOutput()"><br><br>
+
+    <label for="tputBox">Name of User:</label><br>
+    <input type="text" id="tputBox" readonly>
+    <style>
+        #tputBox {
+            text-align: start;
+            width: 100px;
+        }
+    </style>
+
+    <br><br>
+
+    <!-- Reset button to clear the input and output -->
+    <button onclick="esetFields()">Clear</button>
+
+    <br>
+
+    <br>
+</body>
+
+</html>
